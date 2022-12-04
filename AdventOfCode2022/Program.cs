@@ -3,9 +3,11 @@
 
 using AdventOfCode2022;
 using AdventOfCode2022.Day_2;
+using AdventOfCode2022.Day_3;
 
 var Day1Part1 = new Day1();
 var Day2 = new Day2();
+var Day3 = new Day3();
 
 await Day1Part1.GetData();
 var elf = Day1Part1.GetElfWithMostFood();
@@ -14,6 +16,12 @@ Console.WriteLine($"Top 3 Elfs have {Day1Part1.GetTop3ElfsFood()} Food");
 
 await Day2.GetInputData();
 Day2.ProcessInputData();
-Console.WriteLine($"Our Score is {Day2.GetScore()}");
+Console.WriteLine($"Our Estimated Score is {Day2.GetScore()}");
 Day2.ProcessInputDataPart2();
 Console.WriteLine($"Our Score for Part 2 is {Day2.GetScore()}");
+
+
+await Day3.GetInputData();
+Day3.ParseData();
+Console.WriteLine($"RuckSack Common Items Score is {Day3.GetScoreOfCommonItems()}");
+Console.WriteLine($"RuckSack Badge Score is {Day3.BadgeScore}");
