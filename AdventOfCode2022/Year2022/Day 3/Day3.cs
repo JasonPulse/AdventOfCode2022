@@ -1,26 +1,28 @@
-﻿namespace AdventOfCode2022.Day_3;
+﻿using AdventOfCode2022.Common.BaseClasses;
+using AdventOfCode2022.Common.Interfaces;
+using AdventOfCode2022.Day_3;
 
-public class Day3
+namespace AdventOfCode2022.Year2022.Day_3;
+
+public class Day3 : BaseDay
 {
-    private string? RawData { get; set; }
+    private IEnumerable<string> RawData { get; set; }
     private List<RuckSackCompartments> Rucksacks;
     public int BadgeScore { get; set; }
 
-    public Day3()
+    public Day3(IInputFileService inputFileService) : base("Day3InputData.txt", inputFileService)
     {
         this.Rucksacks = new List<RuckSackCompartments>();
     }
     
-    public async Task GetInputData()
+    public void GetInputData()
     {
-        var ff = new FileFunctions();
-        this.RawData = await ff.ReadFile("Day 3/InputData.txt");
+        this.RawData = this.GetInputs();
     }
 
     public void ParseData()
     {
-        var data = this.RawData.Split("\r\n");
-        foreach (var s in data)
+        foreach (var s in this.RawData)
         {
             this.Rucksacks.Add(this.SplitCompartments(s));
         }

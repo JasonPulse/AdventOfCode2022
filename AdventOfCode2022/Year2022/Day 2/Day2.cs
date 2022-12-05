@@ -1,17 +1,23 @@
-﻿using System.Diagnostics;
+﻿using AdventOfCode2022.Common.BaseClasses;
+using AdventOfCode2022.Common.Interfaces;
+using AdventOfCode2022.Day_2;
 
-namespace AdventOfCode2022.Day_2;
+namespace AdventOfCode2022.Year2022.Day_2;
 
-public class Day2
+public class Day2 : BaseDay
 {
+
+    public Day2(IInputFileService inputFileService) : base("Day2InputData.txt", inputFileService)
+    {
+        InputData = new List<string>();
+    }
     
     private int Score { get; set; }
-    private string InputData { get; set; }
+    private IEnumerable<string> InputData { get; set; }
 
-    public async Task GetInputData()
+    public void GetInputData()
     {
-        var ff = new FileFunctions();
-        InputData = await ff.ReadFile("Day 2/InputData.txt");
+        InputData = this.GetInputs();
     }
 
     public int GetScore()
@@ -22,9 +28,7 @@ public class Day2
     public void ProcessInputData()
     {
         this.Score = 0;
-        var data = this.InputData;
-        var rounds = data.Split("\r\n");
-        foreach (var round in rounds)
+        foreach (var round in this.InputData)
         {
             var actions = round.Split(' ');
             var opponentAction = MovesPoints.Null;
@@ -52,9 +56,7 @@ public class Day2
     public void ProcessInputDataPart2()
     {
         this.Score = 0;
-        var data = this.InputData;
-        var rounds = data.Split("\r\n");
-        foreach (var round in rounds)
+        foreach (var round in this.InputData)
         {
             var actions = round.Split(' ');
             var opponentAction = MovesPoints.Null;

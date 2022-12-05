@@ -1,20 +1,27 @@
-﻿namespace AdventOfCode2022.Day_4;
+﻿using AdventOfCode2022.Common.BaseClasses;
+using AdventOfCode2022.Common.Interfaces;
 
-public class Day4
+namespace AdventOfCode2022.Year2022.Day_4;
+
+public class Day4 : BaseDay
 {
-    private string? RawData { get; set; }
+    private IEnumerable<string> RawData { get; set; }
     public int Overlap { get; set; }
 
-    public async Task GetInputData()
+    public Day4(IInputFileService inputFileService) : base("Day4InputData.txt", inputFileService)
     {
-        var ff = new FileFunctions();
-        this.RawData = await ff.ReadFile("Day 4/InputData.txt");
+        
+    }
+    
+    public void GetInputData()
+    {
+        this.RawData = this.GetInputs();
     }
 
     public void ProcessData()
     {
-        var split = this.RawData.Split("\r\n");
-        foreach (var s in split)
+        
+        foreach (var s in this.RawData)
         {
             var assignments = s.Split(',');
             var elf1 = assignments[0].Split('-');
@@ -32,10 +39,12 @@ public class Day4
 
     public bool FullyContains(int StartRange, int EndRange, int CheckStart, int CheckEnd)
     {
+        // Full Overlap
         if ((StartRange <= CheckStart && CheckEnd <= EndRange) ||
             (CheckStart <= StartRange && EndRange <= CheckEnd))
             return true;
 
+        // Partial Overlap
         if ((StartRange <= CheckStart && EndRange >= CheckStart) ||
             (CheckStart <= StartRange && CheckEnd >= StartRange))
             return true;
