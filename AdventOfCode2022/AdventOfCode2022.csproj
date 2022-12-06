@@ -27,6 +27,16 @@
       <None Update="Year2022\Inputs\Day5InputData.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+      <None Update="Year2022\Inputs\Day5SampleData.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Year2022\Day 2\Interfaces" />
+      <Folder Include="Year2022\Day 2\Services" />
+      <Folder Include="Year2022\Day 3\Interfaces" />
+      <Folder Include="Year2022\Day 3\Services" />
     </ItemGroup>
 
 </Project>
