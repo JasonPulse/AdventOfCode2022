@@ -8,14 +8,20 @@ using AdventOfCode2022.Year2022.Day_2;
 using AdventOfCode2022.Year2022.Day_3;
 using AdventOfCode2022.Year2022.Day_4;
 using AdventOfCode2022.Year2022.Day_5;
+using AdventOfCode2022.Year2022.Day_6;
+using AdventOfCode2022.Year2022.Day_6.Interfaces;
+using AdventOfCode2022.Year2022.Day_6.Services;
 
 IInputFileService inputFileService = new InputFileService();
+IPacketDetector packetDetector = new PacketDetector();
+IMessageDetector messageDetector = new MessageDetector();
 
 var Day1Part1 = new Day1(inputFileService);
 var Day2 = new Day2(inputFileService);
 var Day3 = new Day3(inputFileService);
 var Day4 = new Day4(inputFileService);
 var Day5 = new Day5(inputFileService);
+var Day6 = new Day6(inputFileService, packetDetector, messageDetector);
 
 Day1Part1.GetData();
 var elf = Day1Part1.GetElfWithMostFood();
@@ -41,3 +47,6 @@ Console.WriteLine($"Workspace overlap {Day4.Overlap}");
 Day5.CreateStacks();
 var result = Day5.ProcessMoves();
 Console.WriteLine($"Contents After Stacking 9001 {result}");
+
+Console.WriteLine($"Transmission starts at packet {Day6.CheckForPacket()}");
+Console.WriteLine($"Transmission starts at packet {Day6.CheckForMessage()}");
