@@ -37,19 +37,7 @@ public class Day7 : BaseDay
 
         this.GetSubFolderSize(folder);
 
-        int closest = SubFolderSizes.Aggregate((x,y) => Math.Abs(x-number) < Math.Abs(y-number) ? x : y);
-        // var smallestResult = int.MaxValue;
-        // var directorySize = 0;
-        //
-        // foreach (var i in SubFolderSizes)
-        // {
-        //     if (i - x < smallestResult)
-        //     {
-        //         smallestResult = i - x;
-        //         directorySize = i;
-        //     }
-        // }
-        
+        var closest = SubFolderSizes.Aggregate((x,y) => Math.Abs(x-number) < Math.Abs(y-number) ? x : y);
         return closest;
     }
 
