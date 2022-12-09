@@ -11,10 +11,15 @@ using AdventOfCode2022.Year2022.Day_5;
 using AdventOfCode2022.Year2022.Day_6;
 using AdventOfCode2022.Year2022.Day_6.Interfaces;
 using AdventOfCode2022.Year2022.Day_6.Services;
+using AdventOfCode2022.Year2022.Day_7;
+using AdventOfCode2022.Year2022.Day_7.Interfaces;
+using AdventOfCode2022.Year2022.Day_7.Services;
 
 IInputFileService inputFileService = new InputFileService();
 IPacketDetector packetDetector = new PacketDetector();
 IMessageDetector messageDetector = new MessageDetector();
+IFolderTools folderTools = new FolderTools();
+IFileTools fileTools = new FileTools();
 
 var Day1Part1 = new Day1(inputFileService);
 var Day2 = new Day2(inputFileService);
@@ -22,6 +27,7 @@ var Day3 = new Day3(inputFileService);
 var Day4 = new Day4(inputFileService);
 var Day5 = new Day5(inputFileService);
 var Day6 = new Day6(inputFileService, packetDetector, messageDetector);
+var Day7 = new Day7(inputFileService, fileTools, folderTools);
 
 Day1Part1.GetData();
 var elf = Day1Part1.GetElfWithMostFood();
@@ -50,3 +56,10 @@ Console.WriteLine($"Contents After Stacking 9001 {result}");
 
 Console.WriteLine($"Transmission starts at packet {Day6.CheckForPacket()}");
 Console.WriteLine($"Transmission starts at packet {Day6.CheckForMessage()}");
+
+Console.WriteLine($"Total FileSize for folder under 100000 {Day7.CalculateSizesUnder(100000)}");
+Console.WriteLine($"Total FileSize for folder under 70000000 {Day7.CalculateSizesUnder(70000000)}");
+var totalHddUsed = Day7.GetTotalHddSize();
+Console.WriteLine($"Total FileSize for HDD {totalHddUsed}");
+Console.WriteLine($"We need to free up {(totalHddUsed + 30000000) - 70000000}");
+Console.WriteLine($"Smallest Directory that meets the requirments is {Day7.GetDirectorySizeSimular((totalHddUsed + 30000000) - 70000000)}");
