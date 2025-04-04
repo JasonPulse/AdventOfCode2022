@@ -6,11 +6,17 @@ public class InputFileService : IInputFileService
 {
     private const string BasePath = "Year2022/Inputs";
 
-    public IEnumerable<string> GetInputs(string name, string? lineSplitter = null)
+    public IEnumerable<string> GetInputs(string name, string? lineSplitter = null, string path = "")
     {
         lineSplitter ??= Environment.NewLine;
 
-        return GetInput(name)
+        if (string.IsNullOrEmpty(path))
+        {
+            return GetInput(name)
+                .Split(lineSplitter)
+                .Where(i => !string.IsNullOrWhiteSpace(i));
+        }
+        return GetInput(path, name)
             .Split(lineSplitter)
             .Where(i => !string.IsNullOrWhiteSpace(i));
     }
@@ -18,5 +24,10 @@ public class InputFileService : IInputFileService
     private string GetInput(string name)
     {
         return File.ReadAllText($"{BasePath}/{name}");
+    }
+
+    private string GetInput(string path, string name)
+    {
+        return File.ReadAllText($"{path}/{name}");
     }
 }

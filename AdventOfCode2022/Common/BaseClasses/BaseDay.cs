@@ -14,8 +14,8 @@ public class BaseDay
         _inputFileService = inputFileService;
     }
 
-    protected IEnumerable<string> GetInputs(string? lineSplitter = null)
+    protected IEnumerable<string> GetInputs(string? lineSplitter = null, string path = "")
     {
-        return _inputFileService.GetInputs(_inputFileName, lineSplitter);
+        return _inputFileService.GetInputs(_inputFileName, lineSplitter, path);
     }
 }
